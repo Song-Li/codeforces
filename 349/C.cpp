@@ -29,30 +29,39 @@ string ss;
 set<string> suf; 
 set<string> ret;
 
-PII dfs(int pos){
-    if(pos == len - 1) return MP(-1,-1);
-    if(pos == len) return MP(0,0);
+void dfs(int pos){
+    int len = ss.length();
+    if(pos == len){
+        for(auto i : suf)
+            ret.insert(i);
+        return ;
+    }
+    if(pos > len) return ;
 
     string s2 = ss.substr(pos, 2), s3 = ss.substr(pos, 3);
     int r2, r3;
 
-    if(suf.find(s2) != suf.end()) r2 = 0;
+    if(s2.length() != 2 || suf.find(s2) != suf.end()) r2 = 0;
     else {
         suf.insert(s2);
-        PII res = dfs(i + 2);
-        r2 = res.first + res.second + 1;
+        dfs(pos + 2);
+        suf.erase(s2);
     }
-    if(suf.find(s3) != suf.end()) r3 = 0;
+    if(s3.length() != 3 || suf.find(s3) != suf.end()) r3 = 0;
     else{
         suf.insert(s3);
-        PII res = dfs(i + 3);
-        r3 = res.first + res.second;
+        dfs(pos + 3);
+        suf.erase(s3);
     }
-    return MP(r2,r3);
 }
 
 int main(){
     cin >> ss;
-    dfs(5);
+    int len = ss.length();
+    for(int i = 0;i < len - 1;++ i)
+        dfs(5 + i);
+    cout << ret.size() << endl;
+    for(auto i : ret)
+        cout << i << endl;
     return 0;
 }
