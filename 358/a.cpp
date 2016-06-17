@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <cstring>
 #include <math.h>
+#include <map>
 #include <set>
 #define PII pair<int, int>
 #define PFF pair<float, float>
@@ -26,14 +27,19 @@
 #define PI 3.14159265358979323
 using namespace std;
 int main(){
-    int n,p,q;
-    string name;
-    RI(n);
-    for(int i = 0;i < n;++ i){
-        cin >> name;
-        RII(p,q);
-        if(p >= 2400 && q > p) return 0 * printf("YES\n");
-    }
-    printf("NO\n");
+    LL n,m;
+    RLL(n,m);
+    LL a = n / 5;
+    LL b = m / 5;
+    int m1 = n % 5;
+    int m2 = m % 5;
+    LL res = a * b * 5;
+    res += m1 * b + m2 * a;
+    int tmp = 5 - m1;
+    tmp = m2 - tmp;
+    if(tmp < 0) tmp = 0;
+    else tmp ++;
+    res += tmp;
+    cout << res << endl;
     return 0;
 }
