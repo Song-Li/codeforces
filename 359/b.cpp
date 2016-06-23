@@ -27,6 +27,35 @@
 #define INFD 1e32
 #define PI 3.14159265358979323
 using namespace std;
+
+int n;
+int nums[128];
+int getPos(int s, int p){
+    for(int i = s;i < n;++ i)
+        if(nums[i] == p) return i;
+}
+
+void swap(int s, int e){
+    int tmp = nums[s];
+    nums[s] = nums[e];
+    nums[e] = tmp;
+}
 int main(){
+    int pos;
+    int num[128];
+    RI(n);
+    for(int i = 0;i < n;++ i){
+        RI(nums[i]);
+        num[i] = nums[i];
+    }
+    sort(num, num + n);
+    for(int i = 0;i < n;++ i){
+        pos = getPos(i, num[i]);
+        if(pos == i) continue;
+        for(int j = pos;j > i;-- j){
+            printf("%d %d\n", j, j + 1);
+            swap(j, j - 1);
+        }
+    }
     return 0;
 }

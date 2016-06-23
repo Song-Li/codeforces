@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <cstring>
 #include <math.h>
+#include <algorithm>
 #include <map>
 #include <set>
 #define PII pair<int, int>

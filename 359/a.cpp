@@ -28,5 +28,23 @@
 #define PI 3.14159265358979323
 using namespace std;
 int main(){
+    int n;
+    LL tmp,cur;
+    char t;
+    int dis = 0;
+    RI(n);
+    RL(cur);
+    for(int i = 0;i < n;++ i){
+        getchar();
+        t = getchar();
+        RL(tmp);
+        if(t == '+')
+            cur += tmp;
+        else {
+            if(tmp <= cur) cur -= tmp;
+            else dis ++;
+        }
+    }
+    cout << cur << ' ' << dis <<  endl;
     return 0;
 }
