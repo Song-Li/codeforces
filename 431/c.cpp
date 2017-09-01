@@ -8,7 +8,6 @@
 #include <math.h>
 #include <algorithm>
 #include <map>
-#include <unordered_map>
 #include <set>
 #define PII pair<int, int>
 #define PFF pair<float, float>
@@ -28,43 +27,28 @@
 #define INFD 1e32
 #define PI 3.14159265358979323
 using namespace std;
-map<int, int> pri;
-const int mod_num = 1000000007;
-void getPri(int n) {
-  bool flag[1000000];
-  memset(flag, true, sizeof(flag));
-  int con = 0;
-  for (int i = 2;i <= n;++ i) {
-    if (flag[i]) pri[i] = 0;
-    for (auto j : pri) {
-      if (i * j.first > n) break;
-      flag[i * j.first] = false;
-      if (!(i % j.first)) break;
-    }
-  }
-}
 int main(){
-  int n, res = 0;
-  int a[200000];
-  int cur_max = -1;
+  int n;
   RI(n);
-  for (int i = 0;i < n;++ i) {
-    RI(a[i]);
-    cur_max = MAX(cur_max, a[i]);
+  if (!n) {
+    cout << 'a' << endl;
+    return 0;
   }
-  getPri(cur_max);
-  for (int i = 0;i < n;++ i) {
-    res += a[i];
-    res %= mod_num;
-    for (auto p : pri) {
-      if (p.first > a[i]) break;
-      if (a[i] % p.first == 0) {
-        pri[p.first] ++;
-      }
+  int cur = 10;
+  vector<int> res;
+  while(n > 0) {
+    cur = (sqrt((double)(n * 8) + 1) - 1) / 2;
+    res.push_back(cur);
+    n -= cur * (cur + 1) / 2; 
+  }
+  string ret = "";
+  char c = 'a';
+  for (int i : res) {
+    for (int j = 0;j <= i;++ j) {
+      ret += c;
     }
-  } 
-  for (auto p : pri) {
-    cout << p.first << " " << p.second << endl;
+    c ++;
   }
+  cout << ret << endl;
   return 0;
 }
