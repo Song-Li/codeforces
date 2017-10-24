@@ -53,6 +53,10 @@ int main(){
   cin >> n >> m >> k;
   for (int i = 0;i < n;++ i) cin >> ma[i];
   cin >> sx >> sy >> ex >> ey;
+  if (sx == ex && sy == ey) {
+    cout << 0 << endl;
+    return 0;
+  }
   memset(map, -1, sizeof(map));
   for (int i = 0;i < n;++ i) {
     for (int j = 0; j < m;++ j) {

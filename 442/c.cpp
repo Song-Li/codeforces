@@ -30,22 +30,12 @@ using namespace std;
 int main(){
   int n;
   cin >> n;
-  if (n == 2) {
-    cout << 3 << endl << 2 << ' ' << 1 << ' ' << 2 << endl; 
-    return 0;
-  }
-  if (n == 3) {
-    cout << 4 << endl << 2 << ' ' << 1 << ' ' << 3 << ' ' << 2 << endl; 
-    return 0;
-  }
-  if (n == 4) {
-    cout << 6 << endl << 2 << ' ' << 1 << ' ' << 3 << ' ' << 4 << ' ' << 3 << ' ' << 2 << endl; 
-    return 0;
-  }
-  cout << n + n - 3 << endl;
-  cout << 2 << ' ' << 1 << ' ' << n - 1 << ' ' << n << ' ';
-  for (int i = 3;i < n;++ i) cout << i << ' ';
-  for (int i = n - 3;i > 1;-- i) cout << i << ' ';
+  cout << n + (n / 2) << endl;
+
+  for (int i = 2;i <= n;i += 2) cout << i << ' ';
+  for (int i = 1;i <= n;i += 2) cout << i << ' ';
+  for (int i = 2;i <= n;i += 2) cout << i << ' ';
   cout << endl;
+  
   return 0;
 }
